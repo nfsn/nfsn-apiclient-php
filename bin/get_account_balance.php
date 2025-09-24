@@ -13,10 +13,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 /** @param list<string> $argv */
 ( static function ( array $argv ) : void {
 
-    array_shift( $argv ); // Remove script name from arguments.
+    $stCommand = array_shift( $argv );
 
     if ( empty( $stAccount = array_shift( $argv ) ) ) {
-        echo "Usage: php get_account_balance.php <account_id>\n";
+        echo "Usage: php {$stCommand} <account_id>\n";
         exit( 1 );
     }
     assert( is_string( $stAccount ) );
