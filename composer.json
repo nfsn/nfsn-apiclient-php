@@ -1,0 +1,17 @@
+{
+  "name": "nfsn/apiclient",
+  "description": "PHP client bindings for the NearlyFreeSpeech.NET API.",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "NFSN\\APIClient\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^8.3"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "phpunit/phpunit": "^12.3"
+  }
+}
