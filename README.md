@@ -1,6 +1,6 @@
 # nfsn-apiclient-php
 
-PHP bindings for the NFSN API.
+PHP bindings for the NearlyFreeSpeech.NET API.
 
 ## Installation
 
