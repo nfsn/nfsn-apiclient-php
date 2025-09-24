@@ -111,6 +111,19 @@ class DNS extends AbstractApiObject {
     }
 
 
+    public function replaceRR( string $i_stName, string $i_stType, string $i_stData,
+                               ?int   $i_nuTtl = null ) : bool|string {
+        $r = [];
+        $r[ 'name' ] = $i_stName;
+        $r[ 'type' ] = $i_stType;
+        $r[ 'data' ] = $i_stData;
+        if ( is_int( $i_nuTtl ) ) {
+            $r[ 'ttl' ] = $i_nuTtl;
+        }
+        return $this->requestPost( 'replaceRR', $r );
+    }
+
+
     public function sync() : float {
         return floatval( $this->requestGet( 'sync' ) );
     }
