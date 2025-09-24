@@ -32,7 +32,9 @@ class Manager implements ManagerInterface {
     protected string $stStatus;
 
 
-    public function __construct( string $i_strLogin, string $i_strAPIKey, bool $i_bDebug = false ) {
+    public function __construct( #[\SensitiveParameter] string $i_strLogin,
+                                 #[\SensitiveParameter] string $i_strAPIKey,
+                                 bool                          $i_bDebug = false ) {
         $this->stLogin = $i_strLogin;
         $this->stAPIKey = $i_strAPIKey;
         $this->lastError = null;
