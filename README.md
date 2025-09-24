@@ -1,4 +1,4 @@
-# nfsn-api-php
+# nfsn-apiclient-php
 
 PHP bindings for the NFSN API.
 

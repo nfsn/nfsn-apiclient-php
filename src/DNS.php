@@ -1,28 +1,29 @@
 <?php
+
+
 declare( strict_types = 1 );
 
 
 namespace NFSN\APIClient;
 
 
-require_once __DIR__ . '/BaseObject.php';
+class DNS extends AbstractApiObject {
 
 
-class DNS extends BaseObject {
-
-
-    public function __construct( IManager $i_api, string $i_strID ) {
-        parent::__construct( $i_api, 'dns', $i_strID );
+    public function __construct( ManagerInterface $i_api, string $i_stId ) {
+        parent::__construct( $i_api, 'dns', $i_stId );
     }
 
 
-    public function addRR( $i_strName, $i_strType, $i_strData, $i_strTTL = null ) : bool|string {
+    public function addRR( string  $i_stName, string $i_stType, string $i_stData,
+                           ?string $i_nstTtl = null ) : bool|string {
         $r = [];
-        $r[ 'name' ] = $i_strName;
-        $r[ 'type' ] = $i_strType;
-        $r[ 'data' ] = $i_strData;
-        if ( $i_strTTL )
-            $r[ 'ttl' ] = $i_strTTL;
+        $r[ 'name' ] = $i_stName;
+        $r[ 'type' ] = $i_stType;
+        $r[ 'data' ] = $i_stData;
+        if ( $i_nstTtl ) {
+            $r[ 'ttl' ] = $i_nstTtl;
+        }
         return $this->requestPost( 'addRR', $r );
     }
 
@@ -52,44 +53,60 @@ class DNS extends BaseObject {
     }
 
 
-    public function listRRs( ?string $i_strName = null, ?string $i_strType = null,
-                             ?string $i_strData = null, ?string $i_strScope = null ) : bool|string {
+    public function listRRs( ?string $i_nstName = null, ?string $i_nstType = null,
+                             ?string $i_nstData = null, ?string $i_nstScope = null ) : bool|string {
         $r = [];
-        if ( $i_strName ) $r[ 'name' ] = $i_strName;
-        if ( $i_strType ) $r[ 'type' ] = $i_strType;
-        if ( $i_strData ) $r[ 'data' ] = $i_strData;
-        if ( $i_strScope ) $r[ 'scope' ] = $i_strScope;
+        if ( $i_nstName ) {
+            $r[ 'name' ] = $i_nstName;
+        }
+        if ( $i_nstType ) {
+            $r[ 'type' ] = $i_nstType;
+        }
+        if ( $i_nstData ) {
+            $r[ 'data' ] = $i_nstData;
+        }
+        if ( $i_nstScope ) {
+            $r[ 'scope' ] = $i_nstScope;
+        }
         $res = $this->requestPost( 'listRRs', $r );
-        if ( ! $res ) return false;
+        if ( ! $res ) {
+            return false;
+        }
         return $res;
     }
 
 
-    public function putExpire( int $i_expire ) : bool {
-        return $this->requestPut( 'expire', (string) $i_expire );
+    public function putExpire( int $i_uExpire ) : bool {
+        return $this->requestPut( 'expire', (string) $i_uExpire );
     }
 
 
-    public function putMinTTL( int $i_ttl ) : bool {
-        return $this->requestPut( 'minTTL', (string) $i_ttl );
+    public function putMinTTL( int $i_uTtl ) : bool {
+        return $this->requestPut( 'minTTL', (string) $i_uTtl );
     }
 
 
-    public function putRefresh( int $i_refresh ) : bool {
-        return $this->requestPut( 'refresh', (string) $i_refresh );
+    public function putRefresh( int $i_uRefresh ) : bool {
+        return $this->requestPut( 'refresh', (string) $i_uRefresh );
     }
 
 
-    public function putRetry( int $i_retry ) : bool {
-        return $this->requestPut( 'retry', (string) $i_retry );
+    public function putRetry( int $i_uRetry ) : bool {
+        return $this->requestPut( 'retry', (string) $i_uRetry );
     }
 
 
-    public function removeRR( ?string $i_strName, ?string $i_strType, ?string $i_strData ) : bool|string {
+    public function removeRR( ?string $i_nstName, ?string $i_nstType, ?string $i_nstData ) : bool|string {
         $r = [];
-        if ( $i_strName ) $r[ 'name' ] = $i_strName;
-        if ( $i_strType ) $r[ 'type' ] = $i_strType;
-        if ( $i_strData ) $r[ 'data' ] = $i_strData;
+        if ( $i_nstName ) {
+            $r[ 'name' ] = $i_nstName;
+        }
+        if ( $i_nstType ) {
+            $r[ 'type' ] = $i_nstType;
+        }
+        if ( $i_nstData ) {
+            $r[ 'data' ] = $i_nstData;
+        }
         return $this->requestPost( 'removeRR', $r );
     }
 

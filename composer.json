@@ -8,10 +8,18 @@
     }
   },
   "require": {
-    "php": "^8.3"
+    "php": "^8.3",
+    "jdwx/strict": "^1.0.22"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
+    "phan/phan": "^v5",
+    "phpstan/phpstan": "^2.0",
     "phpunit/phpunit": "^12.3"
+  },
+  "scripts": {
+    "phan": "PHAN_ALLOW_XDEBUG=1 php -d xdebug.mode=off vendor/bin/phan -S --analyze-twice",
+    "phpstan": "phpstan",
+    "test": "vendor/bin/phpunit tests"
   }
 }

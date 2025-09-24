@@ -1,24 +1,23 @@
 <?php
+
+
 declare( strict_types = 1 );
 
 
 namespace NFSN\APIClient;
 
 
-require_once __DIR__ . '/BaseObject.php';
+class Account extends AbstractApiObject {
 
 
-class Account extends BaseObject {
-
-
-    public function __construct( IManager $i_api, string $i_strID ) {
-        parent::__construct( $i_api, 'account', $i_strID );
+    public function __construct( ManagerInterface $i_api, string $i_stId ) {
+        parent::__construct( $i_api, 'account', $i_stId );
     }
 
 
-    public function addSite( string $i_strSite ) : void {
+    public function addSite( string $i_stSite ) : void {
         $this->requestPost( 'addSite', [
-            'site' => $i_strSite,
+            'site' => $i_stSite,
         ] );
     }
 
@@ -55,14 +54,18 @@ class Account extends BaseObject {
 
     public function getSites() : bool|string {
         $res = $this->requestGet( 'sites' );
-        if ( ! $res ) return false;
+        if ( ! $res ) {
+            return false;
+        }
         return $res;
     }
 
 
     public function getStatus() : bool|string {
         $res = $this->requestGet( 'status' );
-        if ( ! $res ) return false;
+        if ( ! $res ) {
+            return false;
+        }
         return $res;
     }
 
