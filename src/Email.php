@@ -15,8 +15,11 @@ class Email extends AbstractApiObject {
     }
 
 
-    public function listForwards() : bool|string {
-        return $this->requestPost( 'listForwards', [] );
+    /** @return array<string, string>|bool */
+    public function listForwards() : array|bool {
+        $bst = $this->requestPost( 'listForwards', [] );
+        /** @phpstan-ignore return.type */
+        return $this->decodeArray( $bst );
     }
 
 

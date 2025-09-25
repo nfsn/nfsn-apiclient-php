@@ -7,6 +7,9 @@ declare( strict_types = 1 );
 namespace NFSN\APIClient;
 
 
+use JDWX\Json\Json;
+
+
 abstract class AbstractApiObject {
 
 
@@ -44,6 +47,15 @@ abstract class AbstractApiObject {
 
     public function requestPut( string $i_stProperty, string $i_stValue ) : bool {
         return $this->api->requestPut( $this->strType, $this->strID, $i_stProperty, $i_stValue );
+    }
+
+
+    /** @return array<int|string, mixed>|bool */
+    protected function decodeArray( bool|string $i_bst ) : array|bool {
+        if ( is_bool( $i_bst ) ) {
+            return $i_bst;
+        }
+        return Json::decodeArray( $i_bst );
     }
 
 

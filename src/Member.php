@@ -24,12 +24,11 @@ class Member extends AbstractApiObject {
     }
 
 
-    public function getSites() : bool|string {
+    /** @return list<string>|bool */
+    public function getSites() : array|bool {
         $res = $this->requestGet( 'sites' );
-        if ( ! $res ) {
-            return false;
-        }
-        return $res;
+        /** @phpstan-ignore return.type */
+        return $this->decodeArray( $res );
     }
 
 

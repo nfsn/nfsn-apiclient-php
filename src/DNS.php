@@ -53,8 +53,9 @@ class DNS extends AbstractApiObject {
     }
 
 
+    /** @return array<int|string, mixed>|bool */
     public function listRRs( ?string $i_nstName = null, ?string $i_nstType = null,
-                             ?string $i_nstData = null, ?string $i_nstScope = null ) : bool|string {
+                             ?string $i_nstData = null, ?string $i_nstScope = null ) : array|bool {
         $r = [];
         if ( $i_nstName ) {
             $r[ 'name' ] = $i_nstName;
@@ -68,11 +69,7 @@ class DNS extends AbstractApiObject {
         if ( $i_nstScope ) {
             $r[ 'scope' ] = $i_nstScope;
         }
-        $res = $this->requestPost( 'listRRs', $r );
-        if ( ! $res ) {
-            return false;
-        }
-        return $res;
+        return $this->decodeArray( $this->requestPost( 'listRRs', $r ) );
     }
 
 
