@@ -13,14 +13,14 @@ use JDWX\Json\Json;
 abstract class AbstractApiObject {
 
 
-    protected ManagerInterface $api;
+    protected ManagerBackendInterface $api;
 
     protected string $strID;
 
     protected string $strType;
 
 
-    public function __construct( ManagerInterface $i_api, string $i_stType, string $i_strID ) {
+    public function __construct( ManagerBackendInterface $i_api, string $i_stType, string $i_strID ) {
         $this->strType = $i_stType;
         $this->api =& $i_api;
         $this->strID = $i_strID;

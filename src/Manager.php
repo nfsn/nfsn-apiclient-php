@@ -10,7 +10,7 @@ namespace NFSN\APIClient;
 use JDWX\Strict\OK;
 
 
-class Manager implements ManagerInterface {
+class Manager implements ManagerInterface, ManagerBackendInterface {
 
 
     protected bool $bDebug;
@@ -72,7 +72,7 @@ class Manager implements ManagerInterface {
     }
 
 
-    public function getMember() : Member {
+    public function getMember() : MemberInterface {
         return $this->newMember( $this->stLogin );
     }
 
@@ -93,22 +93,22 @@ class Manager implements ManagerInterface {
     }
 
 
-    public function newDNS( string $i_stId ) : DNS {
+    public function newDNS( string $i_stId ) : DNSInterface {
         return new DNS( $this, $i_stId );
     }
 
 
-    public function newEmail( string $i_stId ) : Email {
+    public function newEmail( string $i_stId ) : EmailInterface {
         return new Email( $this, $i_stId );
     }
 
 
-    public function newMember( string $i_stId ) : Member {
+    public function newMember( string $i_stId ) : MemberInterface {
         return new Member( $this, $i_stId );
     }
 
 
-    public function newSite( string $i_strID ) : Site {
+    public function newSite( string $i_strID ) : SiteInterface {
         return new Site( $this, $i_strID );
     }
 

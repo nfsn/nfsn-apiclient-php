@@ -7,10 +7,10 @@ declare( strict_types = 1 );
 namespace NFSN\APIClient;
 
 
-class Email extends AbstractApiObject {
+class Email extends AbstractApiObject implements EmailInterface {
 
 
-    public function __construct( ManagerInterface $i_api, string $i_stId ) {
+    public function __construct( ManagerBackendInterface $i_api, string $i_stId ) {
         parent::__construct( $i_api, 'email', $i_stId );
     }
 
@@ -18,6 +18,9 @@ class Email extends AbstractApiObject {
     /** @return array<string, string>|bool */
     public function listForwards() : array|bool {
         $bst = $this->requestPost( 'listForwards', [] );
+        if ( ! is_string( $bst ) ) {
+            return $bst;
+        }
         /** @phpstan-ignore return.type */
         return $this->decodeArray( $bst );
     }

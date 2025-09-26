@@ -7,10 +7,10 @@ declare( strict_types = 1 );
 namespace NFSN\APIClient;
 
 
-class Account extends AbstractApiObject {
+class Account extends AbstractApiObject implements AccountInterface {
 
 
-    public function __construct( ManagerInterface $i_api, string $i_stId ) {
+    public function __construct( ManagerBackendInterface $i_api, string $i_stId ) {
         parent::__construct( $i_api, 'account', $i_stId );
     }
 
